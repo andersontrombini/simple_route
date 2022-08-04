@@ -18,6 +18,20 @@ class Request {
         return $this->request;
     }
 
+    //verificar se a key passada como parametro existe na request
+    public function has($key = false){
+
+        if ( !isset($this->request[$key])) {
+            return 'Não existe esse parâmetro informado na request';
+        };
+
+        return 'Existe esse parâmetro informado na request';
+    }
+    
+
+
+    
+
 
 }
 

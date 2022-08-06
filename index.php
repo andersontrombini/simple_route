@@ -1,13 +1,10 @@
 <?php
-include "core/Requests/Request.php";
+
+include "vendor/autoload.php";
+
+use Andersontf\SimpleRoute\Core\Requests\Request;
 
 $request = new Request();
-print_r($request->input('nome'));
-print_r('<br>');
-print_r($request->input('sobrenome'));
-print_r('<br>');
-print_r($request->has('contato'));
-die;
 
 ?>
 

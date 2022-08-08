@@ -38,6 +38,7 @@ class Request implements RequestInterface
 
     public function file(string $key = '')
     {
+       return '';
     }
 
     public function hasFile(string $key): bool
@@ -48,38 +49,35 @@ class Request implements RequestInterface
 
     public function server(): array
     {
-        // Not implemented
-        return [];
+        return $_SERVER;
     }
 
-    public function baseUri(): string
+    public function baseUrl(): string
     {
-        // Not implemented
-        return "";
+        return $_SERVER['HTTP_HOST'];
     }
 
     public function path(): string
     {
-        // Not implemented
-        return "";
+        return $_SERVER['REQUEST_URI'];
     }
 
     public function method(): string
     {
-        // Not implemented
-        return "";
+        return $_SERVER['REQUEST_METHOD'];
     }
 
     public function accepts(array $accepts): bool
     {
-        // Not implemented
-        return false;
+        if(! $_SERVER['HTTP_ACCEPT']){
+            return false;
+        }
+        return true;
     }
 
     public function ip(): string
     {
-        // Not implemented
-        return "";
+        return $_SERVER['REMOTE_ADDR'];
     }
    
 }

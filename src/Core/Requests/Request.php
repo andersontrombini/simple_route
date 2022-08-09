@@ -38,13 +38,16 @@ class Request implements RequestInterface
 
     public function file(string $key = '')
     {
-       return '';
+       return $_FILES;
     }
 
     public function hasFile(string $key): bool
     {
-        // Not implemented
-        return false;
+        if (!isset($_FILES[$key])) {
+            return false;
+        };
+
+        return true;
     }
 
     public function server(): array
@@ -69,9 +72,9 @@ class Request implements RequestInterface
 
     public function accepts(array $accepts): bool
     {
-        if(! $_SERVER['HTTP_ACCEPT']){
-            return false;
-        }
+        // if(! $_SERVER['HTTP_ACCEPT']){
+        //     return false;
+        // }
         return true;
     }
 

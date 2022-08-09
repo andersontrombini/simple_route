@@ -72,9 +72,9 @@ class Request implements RequestInterface
 
     public function accepts(array $accepts): bool
     {
-        // if(! $_SERVER['HTTP_ACCEPT']){
-        //     return false;
-        // }
+        if(! $_SERVER['HTTP_ACCEPT']){
+            return false;
+        }
         return true;
     }
 

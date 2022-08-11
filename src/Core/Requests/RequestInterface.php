@@ -64,8 +64,7 @@ interface RequestInterface {
     /**
      * accepts
      * return the accepts of request
-     * @param array $accepts
-     * @return boolean
+     * @return array
      */
     public function accepts() : array; 
     

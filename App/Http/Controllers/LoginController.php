@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
-class LoginController {
-    
+class LoginController
+{
+
+    public function index()
+    {
+        return "teste Index";
+    }
 }

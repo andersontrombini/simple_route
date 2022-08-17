@@ -9,4 +9,9 @@ class LoginController
     {
         return "teste Index";
     }
+
+    public function edit()
+    {
+        return "teste edit";
+    }
 }

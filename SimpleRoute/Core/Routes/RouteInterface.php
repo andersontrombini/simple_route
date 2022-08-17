@@ -2,6 +2,7 @@
 
 namespace Andersontf\SimpleRoute\Core\Routes;
 
+
 interface RouteInterface {
 
     /**
@@ -57,5 +58,13 @@ interface RouteInterface {
      * @return void
      */
     static function resource(string $route, string $class);
+
+    /**
+     * routeMatch
+     * Check if the route called is the same of web route
+     * @param string $route
+     * @return bool
+     */
+    static function routeMatch(string $route);
 }
  

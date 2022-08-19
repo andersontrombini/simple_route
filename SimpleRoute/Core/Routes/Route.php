@@ -6,7 +6,7 @@ use Andersontf\SimpleRoute\Core\Requests\Request;
 
 class Route implements RouteInterface
 {
-       /**
+    /**
      * get
      * Extracting informations and send to the class and method was chosen 
      * @param string $route
@@ -17,24 +17,23 @@ class Route implements RouteInterface
     {
         //0.verificar se essa rota atende o parametro da URL
 
-        if(! self::routeMatch($route)){
-            return '';
-        }
-        //1. saber se temos parametros passados na url
-        
-        $existeParametro = RouteService::checkIfRouteParams($route);
-        
-        //2. extrair o valor caso exista o parametro da request baseado no identificador da rota
-        //3. chamar o metodo desejado passando o valor extraido como parametro
-        $valorParametro = false;
-        $class = new $class_method[0];
-        $method = $class_method[1];
+        if (self::routeMatch($route)) {
+           
+            //1. saber se temos parametros passados na url
+            $existeParametro = RouteService::checkIfRouteParams($route);
 
-        if (!$existeParametro) {
-            return $class->{$method}(); //colchetes reverte values to string for method
-        }
+            //2. extrair o valor caso exista o parametro da request baseado no identificador da rota
+            //3. chamar o metodo desejado passando o valor extraido como parametro
+            $valorParametro = false;
+            $class =  new $class_method[0]();
+            $method = $class_method[1];
 
-        return $class->{$method}($valorParametro);
+            if (!$existeParametro) {
+                return $class->{$method}(); //colchetes reverte values to string for method
+            }
+
+            return $class->{$method}($valorParametro);
+        }
     }
 
     /**
@@ -105,12 +104,11 @@ class Route implements RouteInterface
      */
     static function routeMatch(string $route): bool
     {
-        //verificar se a rota enviada na requisição é a mesma chamada no arquivo de rota
         $uri = $_SERVER['REQUEST_URI'];
-        
         $cleanRoute = RouteService::extractRoute($route);
         $cleanRequestedRoute = substr($uri, 1);
-        if($cleanRoute == $cleanRequestedRoute){
+
+        if ($cleanRoute == $cleanRequestedRoute) {
             return true;
         }
         return false;

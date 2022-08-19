@@ -6,8 +6,7 @@ use Andersontf\SimpleRoute\Core\Requests\Request;
 
 class Route implements RouteInterface
 {
-    
-    /**
+       /**
      * get
      * Extracting informations and send to the class and method was chosen 
      * @param string $route
@@ -106,13 +105,14 @@ class Route implements RouteInterface
      */
     static function routeMatch(string $route): bool
     {
-        // $request = new Request();
-        // dd($request);
-        //extrair a rota
-        $cleanRoute = RouteService::extractRoute($route);
-        $cleanRequestedRoute = RouteService::extractRoute($_SERVER['REQUEST_URI']);
-        dd($cleanRoute, $cleanRequestedRoute);
         //verificar se a rota enviada na requisição é a mesma chamada no arquivo de rota
-        return true;
+        $uri = $_SERVER['REQUEST_URI'];
+        
+        $cleanRoute = RouteService::extractRoute($route);
+        $cleanRequestedRoute = substr($uri, 1);
+        if($cleanRoute == $cleanRequestedRoute){
+            return true;
+        }
+        return false;
     }
 }

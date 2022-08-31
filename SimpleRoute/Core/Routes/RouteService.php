@@ -2,6 +2,8 @@
 
 namespace Andersontf\SimpleRoute\Core\Routes;
 
+use Andersontf\SimpleRoute\Core\Helpers\StringHelper;
+
 class RouteService {
 
     static function getRouteParams($route)
@@ -16,6 +18,6 @@ class RouteService {
 
     static function extractRoute(string $route):string
     {
-        return explode('/', $route)[0];
+        return StringHelper::explodeStringAndCleanArray($route)[0];
     }
 }
